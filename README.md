@@ -7,3 +7,4 @@ Set of scripts for load currency rates from exchange sites.
 * https://valueplusexchange.com/
 * https://moneyshopphuket.com/
 * https://ex24.pro/
+* https://yesexchangethailand.com/
