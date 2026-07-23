@@ -14,3 +14,4 @@ Set of scripts for load currency rates from exchange sites.
 * https://ex24.pro/
 * https://yesexchangethailand.com/
 * https://phulux.com
+* https://moneyclub.cash/
