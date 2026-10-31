@@ -1,0 +1,50 @@
+{
+  "name": "pwsdotru/thai-currency",
+  "description": "Library for get infrmation about rates currency for thai baht",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Aleksandr Novikov",
+      "email": "pwsdotru@gmail.com",
+      "homepage": "https://github.com/pwsdotru"
+    }
+  ],
+  "keywords": [
+    "currency",
+    "exchange",
+    "rates",
+    "parsers"
+  ],
+  "require": {
+    "php": ">=8.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "12.*",
+    "squizlabs/php_codesniffer": "4.*",
+    "phpstan/phpstan": "^2.2",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "phpstan/extension-installer": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "ThaiCurrency\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit -c phpunit.xml",
+    "style:check": "vendor/bin/phpcs",
+    "style:fix": "vendor/bin/phpcbf",
+    "analyse": "vendor/bin/phpstan analyse --ansi",
+    "git:prepush": [
+      "@style:check",
+      "@analyse",
+      "@test"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
+  }
+}
