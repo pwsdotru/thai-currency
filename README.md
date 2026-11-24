@@ -17,3 +17,4 @@ Set of scripts for load currency rates from exchange sites.
 * https://moneyclub.cash/
 * https://lionexchange.com/
 * https://mamyexchange.com/
+* https://arbi.exchange/
