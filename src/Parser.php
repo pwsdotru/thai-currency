@@ -6,12 +6,13 @@ namespace ThaiCurrency;
 
 use GuzzleHttp\Client;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 
 abstract class Parser
 {
-    private ?ClientInterface $client = null;
+    protected ClientInterface $client;
 
     public function __construct(?ClientInterface $client = null)
     {
@@ -21,4 +22,16 @@ abstract class Parser
             $this->client = $client;
         }
     }
+
+    /**
+     * @return array <string, array <int, float>>
+     */
+    public function get(): array
+    {
+        $request = $this->prepare();
+        $response = $this->client->send($request);
+        return  [];
+    }
+
+    abstract protected function prepare(): RequestInterface;
 }
