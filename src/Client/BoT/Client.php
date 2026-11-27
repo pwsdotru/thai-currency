@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace ThaiCurrency\Client\BoT;
 
 use ThaiCurrency\Parser;
-use Psr\Http\Message\RequestInterface;
-use GuzzleHttp\Psr7\Request;
 
 class Client extends Parser
 {
@@ -15,13 +13,8 @@ class Client extends Parser
      */
     private const URL = "https://www.bot.or.th/content/bot/en/statistics/exchange-rate/jcr:content/root/container/statisticstable2.results.level3cache.%s.json";
 
-    protected function prepare(): RequestInterface
+    protected function url(): string
     {
-        $req = new Request(
-            'GET',
-            sprintf(self::URL, date('Y-m-d')),
-            []
-        );
-        return $req;
+        return sprintf(self::URL, date('Y-m-d'));
     }
 }

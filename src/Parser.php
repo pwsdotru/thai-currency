@@ -5,33 +5,59 @@ declare(strict_types=1);
 namespace ThaiCurrency;
 
 use GuzzleHttp\Client;
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestInterface;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Request;
 
 abstract class Parser
 {
-    protected ClientInterface $client;
+    protected Client $client;
 
-    public function __construct(?ClientInterface $client = null)
+    public function __construct()
     {
-        if (null === $client) {
-            $this->client = new Client();
-        } else {
-            $this->client = $client;
-        }
+        $this->client = new Client();
     }
 
     /**
-     * @return array <string, array <int, float>>
+     * Return array with rates for THB.
+     * Like
+     * [
+     *  "USD" => ["BUY" => 33.4, "SELL" => 33.6],
+     *  "EUR" => ["BUY" => 36.1, "SELL" => 37.0],
+     * ]
+     * @return array <string, array <string, float>>
      */
     public function get(): array
     {
-        $request = $this->prepare();
-        $response = $this->client->send($request);
+        $response = $this->client->request(
+            $this->method(),
+            $this->url(),
+            $this->options()
+        );
         return  [];
     }
 
-    abstract protected function prepare(): RequestInterface;
+    /**
+     * Return method for Request
+     * Default "GET". Child class can override.
+     * @return string
+     */
+    protected function method(): string
+    {
+        return "GET";
+    }
+
+    /**
+     * Return extra params for Request
+     * Default empty array. Child class can override.
+     * @return array <string, mixed>
+     */
+    protected function options(): array
+    {
+        return [];
+    }
+
+    /**
+     * Return URL for request
+     * @return string
+     */
+    abstract protected function url(): string;
 }
