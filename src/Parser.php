@@ -32,7 +32,7 @@ abstract class Parser
             $this->url(),
             $this->options()
         );
-        return  [];
+        return  $this->parse($response->getBody()->getContents());
     }
 
     /**
@@ -60,4 +60,11 @@ abstract class Parser
      * @return string
      */
     abstract protected function url(): string;
+
+
+    /**
+     * @param string $data
+     * @return array <string, array <string, float>>
+     */
+    abstract protected function parse(string $data): array;
 }

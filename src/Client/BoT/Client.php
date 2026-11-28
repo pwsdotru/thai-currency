@@ -17,4 +17,16 @@ class Client extends Parser
     {
         return sprintf(self::URL, date('Y-m-d'));
     }
+
+    /**
+     * @param string $data
+     * @return array <string, array <string, float>>
+     */
+    protected function parse(string $data): array
+    {
+        $res = [];
+        echo($data);
+
+        return $res;
+    }
 }
